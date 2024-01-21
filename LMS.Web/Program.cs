@@ -7,6 +7,7 @@ namespace LMS.Web
     {
         public static void Main(string[] args)
         {
+            //Ali
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("LMSWebContextConnection") ?? throw new InvalidOperationException("Connection string 'LMSWebContextConnection' not found.");
 
