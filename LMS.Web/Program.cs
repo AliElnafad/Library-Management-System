@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using LMS.Web.Data;
 namespace LMS.Web
 {
     public class Program
@@ -5,6 +8,11 @@ namespace LMS.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("LMSWebContextConnection") ?? throw new InvalidOperationException("Connection string 'LMSWebContextConnection' not found.");
+
+            builder.Services.AddDbContext<LMSWebContext>(options => options.UseSqlServer(connectionString));
+
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LMSWebContext>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
