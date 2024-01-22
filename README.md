@@ -1,1 +1,1 @@
-# LMS.Web
+# Library Management System
